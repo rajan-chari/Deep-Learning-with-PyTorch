@@ -1,3 +1,6 @@
+from torch import nn
+
+
 class ARM_VAE(nn.Module):
     def __init__(self, device, img_x, img_y, latent_size):
         super().__init__()
