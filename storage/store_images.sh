@@ -1,0 +1,3 @@
+#!/bin/bash
+export AZURE_STORAGE_CONNECTION_STRING="BlobEndpoint=https://robotimages.blob.core.windows.net/;QueueEndpoint=https://robotimages.queue.core.windows.net/;FileEndpoint=https://robotimages.file.core.windows.net/;TableEndpoint=https://robotimages.table.core.windows.net/;SharedAccessSignature=sv=2020-08-04&ss=bfqt&srt=sco&sp=rwdlacupitfx&se=2022-02-17T14:51:26Z&st=2022-02-17T02:51:26Z&spr=https&sig=mxS%2FjqPOaZZfiDs5%2FYbr45C3j%2BPfWm8NHDPWbz9IWQ8%3D"
+python azure_storage.py
