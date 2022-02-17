@@ -2,18 +2,19 @@ from torch import nn
 
 
 class ARM_VAE(nn.Module):
-    def __init__(self, device, img_x, img_y, latent_size):
+    def __init__(self, device, img_x, img_y, latent_size, lin_depth=2):
         super().__init__()
         self.__device = device
         self.__latent_size = latent_size
         self.IMG_X = img_x
         self.IMG_Y = img_y
 
-        self.encoder = nn.Sequential(
-            nn.Linear(self.IMG_Y * self.IMG_X, self.__latent_size ** 2).double(),
-            nn.ReLU().double(),
-            nn.Linear(self.__latent_size ** 2, self.__latent_size * 2).double()
-        )
+        encoder_modules = []
+        encoder_modules.append(nn.Linear(self.IMG_Y * self.IMG_X, self.__latent_size ** 2).double())
+        encoder_modules.append(nn.ReLU().double())
+        encoder_modules.append(nn.Linear(self.__latent_size ** 2, self.__latent_size * 2).double())
+
+        self.encoder = nn.Sequential(*encoder_modules)
 
         self.decoder = nn.Sequential(
             nn.Linear(self.__latent_size, self.__latent_size ** 2).double(),
